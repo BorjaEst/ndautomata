@@ -10,4 +10,4 @@ def example():
 
 
 def test_automaton(example):
-    assert isinstance(example.automaton,BaseAutomaton)
+    assert isinstance(example.automaton, BaseAutomaton)

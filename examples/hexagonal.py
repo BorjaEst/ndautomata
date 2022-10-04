@@ -9,7 +9,7 @@ adjacent.                         _________________
            \ / \ / \ / \         |-----|-----|-----|
             |2,0|2,1|2,2|        |+1,-1|+1,0 |     |
              \ / \ / \ /         |_____|_____|_____|
-"""
+"""  # noqa: W605
 import ndautomata as ca
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
@@ -17,35 +17,35 @@ from ndautomata import initializers
 from ndautomata import neighbours
 
 
-## ------------------------------------------------------------------
-## Automaton --------------------------------------------------------
+# -------------------------------------------------------------------
+# Automaton ---------------------------------------------------------
 # Defined by dimensions, neighbours and states
 class Automaton(ca.BaseAutomaton):
     neighbours = neighbours.hexagonal(ndim=2, r=1)
     states = 2
 
 
-## ------------------------------------------------------------------
-## Rule -------------------------------------------------------------
-# Rule requires the same shape as the automaton neighbours
-# Rule dimensions size equals the automaton states
+# -------------------------------------------------------------------
+# Rule --------------------------------------------------------------
+# Requires the same shape as the automaton neighbours
+# Dimensions size equals the automaton states
 connections = [Automaton.states] * Automaton.neighbours.size
 rule = initializers.random(states=Automaton.states, size=connections)
 
-## ------------------------------------------------------------------
-## Automaton instantiation ------------------------------------------
+# -------------------------------------------------------------------
+# Automaton instantiation -------------------------------------------
 # Initialization requires states and size
 ic = initializers.center(states=2, size=[100, 100])
 automaton = Automaton(ic, rule)
 
 
-## ------------------------------------------------------------------
-## Evolution and plot -----------------------------------------------
+# -------------------------------------------------------------------
+# Evolution and plot ------------------------------------------------
 # Iterate using next and list comprehensions
 # TODO: improve using matplotlib.collections.RegularPolyCollection
 plt.rcParams["image.cmap"] = "binary"
 fig = plt.figure()
 plt.matshow(ic, fignum=0)
-updt = lambda frame, *args: plt.matshow(next(automaton), fignum=0)
+updt = lambda *args: plt.matshow(next(automaton), fignum=0)  # noqa: E731
 anim = animation.FuncAnimation(fig, updt, frames=200, repeat=False)
 plt.show()

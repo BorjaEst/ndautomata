@@ -1,8 +1,10 @@
 # This requirements are for development and testing only, not for production.
 pytest
+pytest-xdist
 pytest-cov
 coverage
 flake8
+bandit
 black
 isort
 codecov

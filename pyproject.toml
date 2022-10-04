@@ -22,3 +22,6 @@ dynamic = ["version", "dependencies"]
 [tool.setuptools.dynamic]
 version = {file = "src/ndautomata/VERSION"}
 dependencies = {file = ["requirements.txt"]}
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib"]

@@ -11,32 +11,32 @@ from ndautomata import initializers
 from ndautomata import neighbours
 
 
-## ------------------------------------------------------------------
-## Automaton --------------------------------------------------------
+# -------------------------------------------------------------------
+# Automaton ---------------------------------------------------------
 # Defined by dimensions, neighbours and states
 class Automaton(ca.BaseAutomaton):
     neighbours = neighbours.regular(ndim=1, r=1)
     states = 2
 
 
-## ------------------------------------------------------------------
-## Rule -------------------------------------------------------------
-# Rule requires the same shape as the automaton neighbours
-# Rule dimensions size equals the automaton states
+# -------------------------------------------------------------------
+# Rule --------------------------------------------------------------
+# Requires the same shape as the automaton neighbours
+# Dimensions size equals the automaton states
 connections = [Automaton.states] * Automaton.neighbours.size
 rule = np.unpackbits(np.array([110], dtype="uint8"), bitorder="little")
 rule = rule.reshape(connections)
 
 
-## ------------------------------------------------------------------
-## Automaton instantiation ------------------------------------------
+# -------------------------------------------------------------------
+# Automaton instantiation -------------------------------------------
 # Initialization requires states and size
 ic = initializers.center(states=Automaton.states, size=[100])
 automaton = Automaton(ic, rule)
 
 
-## ------------------------------------------------------------------
-## Evolution and plot -----------------------------------------------
+# -------------------------------------------------------------------
+# Evolution and plot ------------------------------------------------
 # Iterate using next and list comprehensions
 plt.rcParams["image.cmap"] = "binary"
 plt.matshow([next(automaton) for _ in range(200)])
