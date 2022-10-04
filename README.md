@@ -11,8 +11,7 @@ pip install ndautomata
 ```
 
 ## Usage
-This package is designed in order to create your own automata definitions based on 3 attributes:
- - **dimensions**: Number of automaton dimensions.
+This package is designed in order to create your own automata definitions based on 2 attributes:
  - **neighbours**: List with relative indexes to cell neighbours.
  - **states**: Number possible cell states.
 
@@ -20,10 +19,10 @@ This package is designed in order to create your own automata definitions based 
 from ndautomata import BaseAutomaton, neighbours
 
 class Automaton(BaseAutomaton):
-    dimensions = 1
     neighbours = neighbours.regular(ndim=1, r=1)
     states = 2
 ```
+> Note the automata dimensions are defined with `neighbours.ndim`.
 
 After you have defined your automaton, you can instantiate automata passing the initial configuration and the rule to the constructor function. Use the module `initializers`, based on [numpy](numpy.org/) to generate the required arrays passing the number of states and size.
 
