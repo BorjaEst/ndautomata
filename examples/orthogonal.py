@@ -1,7 +1,7 @@
-"""In this example, the automaton neighbours are a orthogonal rectanlge with
+"""In this example, the automaton neighbours are a orthogonal rectangle with
 the following features:
  - One neighbours dimension is longer than the other
- - One neighbours dimension is pair (no simetric) 
+ - One neighbours dimension is pair (no symmetric) 
 """
 import ndautomata as ca
 import matplotlib.animation as animation
