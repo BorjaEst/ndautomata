@@ -33,7 +33,7 @@ setup(
     name="ndautomata",
     version=read("ndautomata", "VERSION"),
     description="Awesome cellular automata created by Borja Esteban",
-    url="https://github.com/BorjaEst/cellular-automaton/",
+    url="https://github.com/BorjaEst/ndautomata/",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="BorjaEst",
