@@ -39,9 +39,8 @@ def hexagonal(ndim, r):
     :param ndim: Number of cell dimensions with neighbours
     :param r: Cell radius, distance a cell is considered a neighbour
     :return: Numpy array with neighbour indexing
-    """
-    # TODO: Improve for more than 2 dimensions
-    if ndim > 2 or r > 1:
+    """  # noqa: W605
+    if ndim > 2 or r > 1:  # TODO: Implement for more than 2 dimensions
         raise NotImplementedError
     if ndim < 1 or r < 1:
         raise ValueError

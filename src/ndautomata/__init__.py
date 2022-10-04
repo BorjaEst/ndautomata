@@ -102,12 +102,12 @@ if __name__ == "__main__":
         neighbours = neighbours.regular(ndim=3, r=1)
         states = 2
 
-    ## Configuration
+    # Configuration
     connections = [Automaton.states] * Automaton.neighbours.size
     rule = initializers.random(states=Automaton.states, size=connections)
     ic = initializers.random(states=Automaton.states, size=[100, 100, 10])
     ca = Automaton(ic, rule)
 
-    ## Profiling
+    # Profiling
     time = timeit(lambda: [next(ca) for _ in range(100)], number=10)
     print(f"cc next timing: {time}")
