@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        { // Elemenrary example
+            "name": "Python: Elementary example",
+            "type": "python",
+            "request": "launch",
+            "program": "examples/elementary.py",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+        },
+        { // Game of life example
+            "name": "Python: Game of life example",
+            "type": "python",
+            "request": "launch",
+            "program": "examples/gameoflife.py",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+        },
+        { // Tridimensional example
+            "name": "Python: Tridimensional example",
+            "type": "python",
+            "request": "launch",
+            "program": "examples/tridimensional.py",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+        },
+        { // Other debugs
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+        }
+    ]
+}

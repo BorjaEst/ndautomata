@@ -1,0 +1,4 @@
+pydantic~=1.10.2
+numpy~=1.21.4
+scipy~=1.7.2
+matplotlib~=3.5.0
