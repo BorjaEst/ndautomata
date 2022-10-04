@@ -1,15 +1,23 @@
 {
     "cSpell.words": [
         "arange",
+        "bidimensional",
         "cmap",
         "codecov",
+        "fignum",
+        "gameoflife",
         "matplotlib",
         "matshow",
         "ndautomata",
         "ndimage",
+        "ndindex",
+        "nstates",
         "numpy",
         "pyplot",
-        "scipy"
+        "scipy",
+        "setuptools",
+        "updt",
+        "xffffffff"
     ],
     "python.testing.pytestArgs": [
         "tests"
