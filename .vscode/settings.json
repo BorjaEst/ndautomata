@@ -1,11 +1,13 @@
 {
     "cSpell.words": [
+        "addopts",
         "arange",
         "bidimensional",
         "cmap",
         "codecov",
         "fignum",
         "gameoflife",
+        "importlib",
         "matplotlib",
         "matshow",
         "ndautomata",
@@ -14,6 +16,7 @@
         "nstates",
         "numpy",
         "pyplot",
+        "pythonpath",
         "scipy",
         "setuptools",
         "updt",
