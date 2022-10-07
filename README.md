@@ -1,7 +1,7 @@
-
 # ndAutomata
-[![codecov]()]()
-[![CI]()]()
+![qc.sec](https://github.com/BorjaEst/ndautomata/actions/workflows/qc-sec.yml/badge.svg)
+![qc.sty](https://github.com/BorjaEst/ndautomata/actions/workflows/qc-sty.yml/badge.svg)
+![qc.uni](https://github.com/BorjaEst/ndautomata/actions/workflows/qc-uni.yml/badge.svg)
 
 Awesome cellular automata library created by Borja Esteban. 
 
