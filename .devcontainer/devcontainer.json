@@ -1,0 +1,23 @@
+{
+	"name": "Python 3",
+	"image": "mcr.microsoft.com/devcontainers/python:3.10-bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "none"
+		},
+		"ghcr.io/devcontainers/features/common-utils:1": {},
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/nvidia-cuda:1": {},
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/rocker-org/devcontainer-features/pandoc:1": {}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "pip3 install --user -r requirements-test.txt tox",
+
+	// Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}
