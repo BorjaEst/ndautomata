@@ -1,4 +1,6 @@
-# ndAutomata
+<h1 align="left">
+<img src="README_files/ndautomata-logo.png" width="600">
+</h1><br>
 
 ![qc.sec](https://github.com/BorjaEst/ndautomata/actions/workflows/qc-sec.yml/badge.svg)
 ![qc.sty](https://github.com/BorjaEst/ndautomata/actions/workflows/qc-sty.yml/badge.svg)
