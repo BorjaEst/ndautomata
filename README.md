@@ -5,6 +5,7 @@
 ![qc.sec](https://github.com/BorjaEst/ndautomata/actions/workflows/qc-sec.yml/badge.svg)
 ![qc.sty](https://github.com/BorjaEst/ndautomata/actions/workflows/qc-sty.yml/badge.svg)
 ![qc.uni](https://github.com/BorjaEst/ndautomata/actions/workflows/qc-uni.yml/badge.svg)
+[![DOI](https://zenodo.org/badge/545341562.svg)](https://zenodo.org/badge/latestdoi/545341562)
 
 
 Awesome cellular automata library created by Borja Esteban.
