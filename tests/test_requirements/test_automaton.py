@@ -41,23 +41,23 @@ class AttrRequirements:
 
 
 class NextRequirements:
-    def test_returns_ndarray(self, next):
-        assert isinstance(next, np.ndarray)
+    def test_returns_ndarray(self, configuration):
+        assert isinstance(configuration, np.ndarray)
 
     def test_keep_rule(self, original, rule):
         assert np.all(original.rule == rule)
 
     @mark.parametrize("rule", [initializers.zeros], indirect=True)
-    def test_indexing_rule0(self, next):
-        assert np.all(next == 0)
+    def test_indexing_rule0(self, configuration):
+        assert np.all(configuration == 0)
 
     @mark.parametrize("rule", [initializers.ones], indirect=True)
-    def test_indexing_rule1(self, next, nstates):
-        assert np.all(next == nstates - 1)
+    def test_indexing_rule1(self, configuration, nstates):
+        assert np.all(configuration == nstates - 1)
 
-    def test_next_copies(self, automaton, next):
-        assert automaton.configuration is not next
-        assert np.all(automaton.configuration == next)
+    def test_next_copies(self, automaton, configuration):
+        assert automaton.configuration is not configuration
+        assert np.all(automaton.configuration == configuration)
 
 
 # Parametrization ---------------------------------------------------
@@ -67,5 +67,5 @@ class TestAutomaton(AttrRequirements, NextRequirements):
         return copy.deepcopy(automaton)
 
     @fixture(scope="function")
-    def next(self, automaton, original):
+    def configuration(self, automaton, original):
         return next(automaton)
