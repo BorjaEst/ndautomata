@@ -98,7 +98,7 @@ class BaseAutomaton(ABC):
         self._rule = value.ravel()
 
     def cell_neighbours(self, *index):
-        shape = self.neighbours.shape        
+        shape = self.neighbours.shape
         pads = [(floor(dim/2), ceil(dim / 2)) for dim in shape]
         array = np.pad(self.configuration, pads, "wrap")
         views = np.lib.stride_tricks.sliding_window_view
