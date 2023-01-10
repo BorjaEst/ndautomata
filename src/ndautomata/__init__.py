@@ -11,6 +11,7 @@ neighborhood.
 """
 import copy
 from abc import ABC
+from math import ceil, floor
 
 import numpy as np
 from pydantic import PositiveInt
@@ -43,6 +44,11 @@ class BaseAutomaton(ABC):
         Number of dimensions the cells are arranged in the cellular automaton.
     rule : (N,) ndarray
         Rule used to calculate next cell states in the cellular automaton.
+
+    Methods
+    ----------
+    cell_neighbours : (N,) ndarray
+        Returns the values of the cell position neighbours as 1-dim array.
 
     Class Attributes
     ----------------
@@ -90,6 +96,13 @@ class BaseAutomaton(ABC):
         assert len(value.shape) == self.neighbours.size
         assert np.max(value) < self.states
         self._rule = value.ravel()
+
+    def cell_neighbours(self, *index):
+        shape = self.neighbours.shape
+        pads = [(floor(dim/2), ceil(dim / 2)) for dim in shape]
+        array = np.pad(self.configuration, pads, "wrap")
+        views = np.lib.stride_tricks.sliding_window_view
+        return views(array, shape)[tuple(index)].ravel()[::-1]
 
 
 if __name__ == "__main__":
