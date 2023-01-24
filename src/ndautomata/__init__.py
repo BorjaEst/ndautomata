@@ -42,11 +42,15 @@ class BaseAutomaton(ABC):
         NdArray containing all current cell states for the cellular automaton.
     dimensions : PositiveInt
         Number of dimensions the cells are arranged in the cellular automaton.
+    rule_constrain : PositiveInt
+        Number of dimensions the rule requires.
     rule : (N,) ndarray
         Rule used to calculate next cell states in the cellular automaton.
 
     Methods
     ----------
+    neighbour_indexes(self) : ndarray
+        Calculates and returns the index values for each cell neighbours.
     cell_neighbours : (N,) ndarray
         Returns the values of the cell position neighbours as 1-dim array.
 
@@ -72,13 +76,17 @@ class BaseAutomaton(ABC):
         self._weights = np.array(self.states**self.neighbours, dtype="uint")
         self._weights //= self.states
 
-    def __next__(self):
+    def neighbour_indexes(self):
         correlate(
             self.configuration,  # Automaton states and neighbours
             self._weights,  # Correlation with connection weights
-            output=self.__index,  # Output should be uint max
             mode="wrap",  # ‘wrap’ (a b c d | a b c d | a b c d)
+            output=self.__index,  # Output should be uint max
         )
+        return self.__index
+
+    def __next__(self):
+        self.neighbour_indexes()  # Calculate neighbour indexes
         self.configuration[:] = self._rule[self.__index]
         return copy.deepcopy(self.configuration)
 
@@ -87,16 +95,21 @@ class BaseAutomaton(ABC):
     def dimensions(cls):
         return cls.neighbours.ndim
 
+    @classmethod
+    @property
+    def rule_constrain(cls):
+        return cls.neighbours.size
+
     @property
     def rule(self):
-        rule_shape = [self.states] * self.neighbours.size
+        rule_shape = [self.states] * self.rule_constrain
         return self._rule.reshape(rule_shape)
 
     @rule.setter
     def rule(self, value):
         if not isinstance(value, np.ndarray):
             raise TypeError("Expected ndarray for rule value")
-        if len(value.shape) != self.neighbours.size:
+        if len(value.shape) != self.rule_constrain:
             raise ValueError("Rule shape does not fit neighbours size")
         if np.max(value) >= self.states:
             raise ValueError("Rule contains invalid state values")
@@ -104,7 +117,7 @@ class BaseAutomaton(ABC):
 
     def cell_neighbours(self, *index):
         shape = self.neighbours.shape
-        pads = [(floor(dim/2), ceil(dim / 2)) for dim in shape]
+        pads = [(floor(dim / 2), ceil(dim / 2)) for dim in shape]
         array = np.pad(self.configuration, pads, "wrap")
         views = np.lib.stride_tricks.sliding_window_view
         return views(array, shape)[tuple(index)].ravel()[::-1]
