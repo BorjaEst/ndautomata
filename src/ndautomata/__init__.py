@@ -62,8 +62,10 @@ class BaseAutomaton(ABC):
     states: PositiveInt
 
     def __init__(self, initial_configuration, rule):
-        assert initial_configuration.ndim == self.dimensions
-        assert np.max(initial_configuration) < self.states
+        if initial_configuration.ndim != self.dimensions:
+            raise ValueError("Initial configuration does not fit dimensions")
+        if np.max(initial_configuration) >= self.states:
+            raise ValueError("Initial configuration contains invalid states")
         self.configuration = copy.copy(initial_configuration)
         self.rule = rule
         self.__index = np.empty(initial_configuration.shape, dtype="uint")
@@ -92,9 +94,12 @@ class BaseAutomaton(ABC):
 
     @rule.setter
     def rule(self, value):
-        assert isinstance(value, np.ndarray)
-        assert len(value.shape) == self.neighbours.size
-        assert np.max(value) < self.states
+        if not isinstance(value, np.ndarray):
+            raise TypeError("Expected ndarray for rule value")
+        if len(value.shape) != self.neighbours.size:
+            raise ValueError("Rule shape does not fit neighbours size")
+        if np.max(value) >= self.states:
+            raise ValueError("Rule contains invalid state values")
         self._rule = value.ravel()
 
     def cell_neighbours(self, *index):
