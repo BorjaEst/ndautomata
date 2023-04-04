@@ -70,7 +70,7 @@ import matplotlib.pyplot as plt
 
 ```python
 plt.rcParams["image.cmap"] = "binary"
-plt.matshow([next(ca) for _ in range(100)])
+plt.matshow([next(ca).get() for _ in range(100)])
 plt.show()
 ```
 
