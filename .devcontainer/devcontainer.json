@@ -1,13 +1,9 @@
 {
 	"name": "Python 3",
-	"image": "mcr.microsoft.com/devcontainers/python:3.10-bullseye",
+	"build": { "dockerfile": "Dockerfile" },
 	"features": {
-		"ghcr.io/devcontainers/features/node:1": {
-			"version": "none"
-		},
 		"ghcr.io/devcontainers/features/common-utils:1": {},
 		"ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/devcontainers/features/nvidia-cuda:1": {},
 		"ghcr.io/rocker-org/devcontainer-features/pandoc:1": {},
 		"ghcr.io/devcontainers-contrib/features/tox:1": {}
 	},
@@ -20,6 +16,9 @@
 
 	// Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
+
+	// Enable GPU passthrough. More info: https://github.com/devcontainers/features/tree/main/src/nvidia-cuda 
+	"runArgs": ["--gpus", "all"],	
 
 	// Add here the customization such development extensions
 	"customizations": {
