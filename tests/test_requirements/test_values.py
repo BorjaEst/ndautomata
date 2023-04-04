@@ -1,7 +1,7 @@
 """Module to test automaton features and requirements.
 Note order of bits in rules is from lowest to biggest.
 """
-import numpy as np
+import cupy as np
 from ndautomata import BaseAutomaton, neighbours, initializers
 from pytest import mark
 

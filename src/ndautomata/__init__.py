@@ -13,9 +13,9 @@ import copy
 from abc import ABC
 from math import ceil, floor
 
-import numpy as np
+import cupy as np
 from pydantic import PositiveInt
-from scipy.ndimage import correlate
+from cupyx.scipy.ndimage import correlate
 
 from ndautomata import neighbours
 

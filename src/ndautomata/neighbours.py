@@ -1,7 +1,7 @@
 """Module with tools for automaton definitions."""
 from functools import reduce
 
-import numpy as np
+import cupy as np
 
 
 def regular(ndim, r):
@@ -17,7 +17,7 @@ def regular(ndim, r):
 
     :param ndim: Number of cell dimensions with neighbours
     :param r: Cell radius, distance a cell is considered a neighbour
-    :return: Numpy array with neighbour indexing
+    :return: Cupy array with neighbour indexing
     """
     if ndim < 1 or r < 1:
         raise ValueError
@@ -38,7 +38,7 @@ def hexagonal(ndim, r):
 
     :param ndim: Number of cell dimensions with neighbours
     :param r: Cell radius, distance a cell is considered a neighbour
-    :return: Numpy array with neighbour indexing
+    :return: Cupy array with neighbour indexing
     """  # noqa: W605
     if ndim > 2 or r > 1:  # TODO: Implement for more than 2 dimensions
         raise NotImplementedError
@@ -65,7 +65,7 @@ def orthogonal(size):
      |_____|_____|_____|_____|  |_____|_____|_____|_____|
 
     :param size: Shape of connections
-    :return: Numpy array with neighbour indexing
+    :return: Cupy array with neighbour indexing
     """
     n_neighbours = reduce((lambda x, y: x * y), size)
     return np.arange(n_neighbours, 0, -1).reshape(size)

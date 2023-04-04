@@ -1,7 +1,7 @@
 """Module to test automaton features and requirements"""
 import copy
 
-import numpy as np
+import cupy as np
 from ndautomata import initializers
 from pytest import fixture, mark
 

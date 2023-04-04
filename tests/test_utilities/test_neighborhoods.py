@@ -1,5 +1,5 @@
 from ndautomata import neighbours
-import numpy as np
+import cupy as np
 
 
 def test_1dr1():
