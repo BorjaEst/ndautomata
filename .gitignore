@@ -130,3 +130,6 @@ dmypy.json
 
 # Image design
 *.xcf
+
+# Whiteboards
+whiteboard*.py
