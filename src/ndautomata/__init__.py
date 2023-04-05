@@ -119,8 +119,17 @@ class BaseAutomaton(ABC):
         shape = self.neighbours.shape
         pads = [(floor(dim / 2), ceil(dim / 2)) for dim in shape]
         array = np.pad(self.configuration, pads, "wrap")
-        views = np.lib.stride_tricks.sliding_window_view
-        return views(array, shape)[tuple(index)].ravel()[::-1]
+        return _sliding_window(array, shape)[tuple(index)].ravel()[::-1]
+
+
+# https://stackoverflow.com/questions/57538406/extract-sub-arrays-based-on-kernel-in-numpy
+def _sliding_window(x, win_shape, **kwargs):
+    if not x.ndim == len(win_shape):
+        raise ValueError("Req win_shape for all dimensions of `x`.")
+    shape = tuple(dn - wn + 1 for dn, wn in zip(x.shape, win_shape))
+    shape += win_shape
+    as_strided = np.lib.stride_tricks.as_strided
+    return as_strided(x, shape=shape, strides=x.strides * 2, **kwargs)
 
 
 if __name__ == "__main__":
